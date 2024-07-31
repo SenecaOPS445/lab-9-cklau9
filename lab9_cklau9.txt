@@ -1,0 +1,41 @@
+
+PLAY [configure an OPS445 Linux VM machine] ************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [vmlab]
+
+TASK [update Apache (httpd) installed] *****************************************
+ok: [vmlab]
+
+TASK [install extra packages repository for enterprise Linux (EPEL) if it is not already installed] ***
+ok: [vmlab]
+
+TASK [remove 'tree' package] ***************************************************
+ok: [vmlab]
+
+TASK [set hostname to senecaid] ************************************************
+changed: [vmlab]
+
+TASK [create a new user with your Seneca_ID with sudo access] ******************
+changed: [vmlab]
+
+TASK [Create .ssh directory for cklau9] ****************************************
+changed: [vmlab]
+
+TASK [set authorized key taken from file] **************************************
+changed: [vmlab]
+
+TASK [setup a directory structure using a loop] ********************************
+changed: [vmlab] => (item=1)
+changed: [vmlab] => (item=2)
+changed: [vmlab] => (item=3)
+changed: [vmlab] => (item=4)
+changed: [vmlab] => (item=5)
+changed: [vmlab] => (item=6)
+changed: [vmlab] => (item=7)
+changed: [vmlab] => (item=8)
+changed: [vmlab] => (item=9)
+
+PLAY RECAP *********************************************************************
+vmlab                      : ok=9    changed=5    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
