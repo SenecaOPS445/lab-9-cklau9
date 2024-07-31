@@ -1,0 +1,55 @@
+---
+- name:  configure an OPS445 Linux VM machine
+  hosts: vmlab
+  user: student
+  become: yes
+   
+  tasks:
+    - name: update Apache (httpd) installed
+      yum:
+        name: httpd
+        state: latest
+    
+    - name: install extra packages repository for enterprise Linux (EPEL) if it is not already installed
+      yum:
+        name: epel-release
+        state: present
+    
+    - name: remove 'tree' package
+      yum:
+        name: tree 
+        state: absent
+
+    - name: set hostname to senecaid
+      hostname:
+        name: cklau9
+    
+    - name:  create a new user with your Seneca_ID with sudo access
+      user: 
+        name: cklau9
+        state: present
+        groups: wheel
+        append: yes
+    
+    - name: Create .ssh directory for cklau9
+      file:
+        path: /home/cklau9/.ssh
+        state: directory
+        owner: cklau9    
+    
+    - name: set authorized key taken from file
+      authorized_key:
+        user: cklau9
+        state: present
+        key: "{{ lookup('file', '/home/cklau9/.ssh/id_rsa.pub') }}"
+
+    - name:  setup a directory structure using a loop
+      file:
+        path: "/home/cklau9/ops445/lab{{item}}"
+        state: directory
+        owner: cklau9
+      loop: [1,2,3,4,5,6,7,8,9]
+    
+
+
+      
